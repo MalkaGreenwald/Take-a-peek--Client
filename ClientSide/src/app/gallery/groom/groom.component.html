@@ -1,0 +1,8 @@
+
+<div class="upload-btn-wrapper">
+        <button class="btn">Add image</button>
+<input value="GROOM" type='file' name='myfile' class="btn" 
+(change)="handleFileInput($event.target.files)"class="btn btn-secondary" accept="image/*" >
+</div>
+<img *ngIf="url!=null" [src]="url" class="img-fluid myImg" width="90%" height="90%">
+

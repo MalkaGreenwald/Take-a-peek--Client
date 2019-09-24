@@ -1,0 +1,107 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+
+<div *ngIf="imageService.recycleBin!=null &&imageService.recycleBin.length>0&&imageService.showCycle==true" id="reBin">
+    <span class="title1" style="text-align: center">-----------------------------Recycle-bin---------------------------</span>
+    <div class="container-fluid">
+        <div id="carouselExample" class="carousel slide" data-ride="carousel" data-interval="9000">
+            <div class="carousel-inner row w-100 mx-auto" role="listbox">
+
+                <div class="carousel-item col-md-3  active">
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail">
+                            <a title="image 1" class="thumb">
+                                <img class="img-fluid mx-auto d-block" src="{{imageService.recycleBin[0].url}}"
+                                    alt="slide 1" width="100%" height="auto">
+                                <i title="Undo deletion" class="material-icons" (click)="undoDelete(imageService.recycleBin[0])">
+                                        <!-- refresh -->
+                                        arrow_upward
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div *ngFor="let image of imageService.recycleBin | slice:1; let i = index;" class="carousel-item col-md-3 ">
+                    <div class="panel panel-default">
+                        <div class="panel-thumbnail">
+                            <a title="image {{item}}" class="thumb">
+                                <img class="img-fluid mx-auto d-block" src="{{imageService.recycleBin[i].url}}"
+                                    alt="slide 2" width="100%" height="auto">
+                                <i class="material-icons" (click)="undoDelete(imageService.recycleBin[i])">
+                                        arrow_upward
+                                </i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+                    <i class="fa fa-chevron-left" style="font-size: 2.5vw;color:black"></i>
+                <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+
+
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+                <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                <i class="fa fa-chevron-right" style="font-size: 2.5vw;color:black"></i>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+    <!-- <a class="carousel-control-prev" href="#carouselExample" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a> -->
+    <!-- <a class="carousel-control-next text-faded" href="#carouselExample" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a> -->
+</div>
+
+<script language="javascript">
+    $('#carouselExample').on('slide.bs.carousel', function (e) {
+
+
+        var $e = $(e.relatedTarget);
+        var idx = $e.index();
+        var itemsPerSlide = 4;
+        var totalItems = $('.carousel-item').length;
+
+        if (idx >= totalItems - (itemsPerSlide - 1)) {
+            var it = itemsPerSlide - (totalItems - idx);
+            for (var i = 0; i < it; i++) {
+                // append slides to end
+                if (e.direction == "left") {
+                    $('.carousel-item').eq(i).appendTo('.carousel-inner');
+                }
+                else {
+                    $('.carousel-item').eq(0).appendTo('.carousel-inner');
+                }
+            }
+        }
+    });
+
+
+    $('#carouselExample').carousel({
+        interval: 2000
+    });
+
+
+    $(document).ready(function () {
+        /* show lightbox when clicking a thumbnail */
+        $('a.thumb').click(function (event) {
+            event.preventDefault();
+            var content = $('.modal-body');
+            content.empty();
+            var title = $(this).attr("title");
+            $('.modal-title').html(title);
+            content.html($(this).html());
+            $(".modal-profile").modal({ show: true });
+        });
+
+    });
+</script>

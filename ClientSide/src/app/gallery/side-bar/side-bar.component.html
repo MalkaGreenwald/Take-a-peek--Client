@@ -1,0 +1,209 @@
+<div id="sideBar">
+  <div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="fas fa-bars"></i>
+    </a>
+    <nav id="sidebar" class="sidebar-wrapper">
+      <div class="sidebar-content">
+        <div class="sidebar-brand">
+          <a href="#">filters</a>
+
+        </div>
+
+        <!-- <div class="sidebar-header">
+
+        </div> -->
+        <!-- <div class="sidebar-search"> -->
+
+        <!-- plus -->
+
+
+        
+
+        <div class="sidebar-menu">
+
+          <ul>
+            <div class="hover" style="    margin-top: 4vh;"><span style="">
+                <i class="material-icons" style=" color:  rgb(184, 175, 53)
+                ;font-size:30px; animation: swing ease-in-out 0.6s 30000 ;">add</i></span>
+                <a title="Upload images" class="social-link" target="_blank"><i id="file-icon" for="upload" class="material-icons">backup</i><input type='file' accept="image/*" id="upload" name='myfile' (change)="handleFileInput($event.target.files)"
+                  multiple >
+                </a>
+                <a title="Add event star" class="social-link"  target="_blank" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-user"></i></a>
+                <a title="Download zip" class="social-link" target="_blank" (click)="downloadZip()"> <i class="fa fa-download"></i></a>
+                <a class="social-link" title="Reset the album" target="_blank" mwlConfirmationPopover mwlConfirmationPopover
+                [popoverMessage]="popoverMessage" placement="left" (confirm)="Reset()" (cancel)="cancelClicked = true"
+                confirmButtonType="danger" [appendToBody]="true" [placement]="placement"><i
+                  class="material-icons" style="font-size: 30px;">refresh</i></a>
+                </div>
+              
+
+
+            <!-- <input type="number" [min]="0" [max]="imagesService.numPersonTemp" #numPerson placeholder="Enter number of people in image" (change)="numPerson(numPerson)"> -->
+            
+            <li class="filter header-menu">
+              <span>filter image</span>
+            </li>
+        
+            <li>
+              <a>
+                <i class="fa fa-sun" [ngClass]="{'checked': Blur.checked==true, 'not-checked':Blur.checked==false}"
+                  (click)="isBlur(Blur.checked)"></i>
+                <label class="btn active" (click)="isBlur(Blur.checked)">
+                  <input type="checkbox" name='email1' #Blur><span> Blurred </span>
+                </label>
+                <span class="badge badge-pill badge-success notification" (click)="clearBlur()"
+                  [ngClass]="{'clear':isClearBlur==true,'not-clear':isClearBlur==false}"><span
+                    *ngIf="!isClearBlur">cancel</span><span *ngIf="isClearBlur">clear</span></span>
+              </a>
+            </li>
+
+            <li>
+              <a>
+                <i class="fa fa-eye"
+                  [ngClass]="{'checked': CloseEye.checked==true, 'not-checked':CloseEye.checked==false}"></i>
+                <label class="btn active" (click)="isCloseEye(CloseEye.checked)">
+                  <input type="checkbox" name='email1' #CloseEye><span>Closed eyes </span>
+
+                </label>
+                <span class="badge badge-pill badge-success notification" (click)="clearCloseEyes()"
+                  [ngClass]="{'clear':isClearEyes==true,'not-clear':isClearEyes==false}"><span
+                    *ngIf="!isClearEyes">cancel</span><span *ngIf="isClearEyes">clear</span></span>
+
+              </a>
+            </li>
+
+
+
+
+            <li class="header-menu">
+              <span>mapping image</span>
+            </li>
+            <li>
+              <a>
+                <i class="fa fa-home"
+                  [ngClass]="{'checked': Inside.checked==true, 'not-checked':Inside.checked==false}"></i>
+                <label class="btn active" (click)="isInside(Inside.checked)">
+                  <input type="checkbox" name='email1' #Inside><span> Indoor </span>
+                </label>
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fa fa-sun"
+                  [ngClass]="{'checked': Outdoor.checked==true, 'not-checked':Outdoor.checked==false}"></i>
+                <label class="btn active" (click)="isOutdoor(Outdoor.checked)">
+                  <input type="checkbox" name='email1' #Outdoor><span> Outdoor </span>
+                </label>
+              </a>
+            </li>
+            <li>
+              <a *ngIf="imagesService.isUploadingGroom==false">
+                <i class="fa fa-user"
+                  [ngClass]="{'checked': GroomAlone.checked==true, 'not-checked':GroomAlone.checked==false}"></i>
+                <label class="btn active" (click)="isGroomAlone(GroomAlone.checked)">
+                  <input type="checkbox" name='email1' #GroomAlone><span>Event star alone</span>
+                </label>
+              </a>
+              <a *ngIf="imagesService.isUploadingGroom==true">
+                <i class="fa fa-user" [ngClass]="{'not-checked':GroomAlone.checked==false}"></i>
+                <label class="btn active">
+                  <input type="checkbox" name='email1' #GroomAlone><span data-tooltip="Updating data"
+                    data-tooltip-location="top">Event star alone</span>
+                </label>
+              </a>
+            </li>
+            <li>
+              <a *ngIf="imagesService.isUploadingGroom==false">
+                <i class="fa fa-users"
+                  [ngClass]="{'checked': GroomContain.checked==true, 'not-checked':GroomContain.checked==false}"></i>
+                <label class="btn active" (click)="isGroomContain(GroomContain.checked)">
+                  <input type="checkbox" name='email1' #GroomContain><span>Event star</span>
+                </label>
+
+              </a>
+              <a *ngIf="imagesService.isUploadingGroom==true">
+                <i class="fa fa-users" [ngClass]="{'not-checked':GroomContain.checked==false}"></i>
+                <label class="btn active">
+                  <input type="checkbox" name='email1' #GroomContain><span data-tooltip="Updating data"
+                    data-tooltip-location="top">Event star</span>
+                </label>
+
+              </a>
+            </li>
+            <li>
+              <a>
+                <i class="fa fa-child"
+                  [ngClass]="{'checked': child.checked==true, 'not-checked':child.checked==false}"></i>
+                <label class="btn active" (click)="isChild(child.checked)">
+                  <input type="checkbox" name='email1' #child><span> Children </span>
+                </label>
+              </a>
+            </li>
+
+            <li>
+              <a>
+                <i class="fa fa-sort-numeric-up"
+                  [ngClass]="{'checked': numPerson1.changed==true, 'not-checked':numPerson1.changed==false}"></i>
+                <input type="number" class='form-control'  #numPerson1 placeholder="Number of people" (change)="numPerson(numPerson1.value)"
+                  (input)="numPerson(numPerson1.value)" min=0>
+
+              </a>
+            </li>
+          </ul>
+        </div>
+        <!-- sidebar-menu  -->
+      </div>
+      <!-- sidebar-content  -->
+      <div class="sidebar-footer">
+        <!--  -->
+        <!-- <a>
+          <i class="fa fa-trash"></i>
+          <span class="badge badge-pill badge-warning notification poin black" (click)="showCycle()">Cycle-Bin</span>
+        </a> -->
+
+        <!-- <a>
+          <i class="fa fa-download" id="downloadZip" data-toggle="tooltip" data-placement="top"></i>
+          <span class="badge badge-pill badge-success notification poin black" (click)="downloadZip()">Download</span>
+        </a> -->
+        <!--  -->
+
+        <a>
+          <i class="fa fa-bell"></i>
+          <span class="badge badge-pill badge-warning notification">0</span>
+        </a>
+        <a>
+          <i class="fa fa-envelope"></i>
+          <span class="badge badge-pill badge-success notification">BETA</span>
+        </a>
+        <!-- <div class="hover iconfooter" style="
+        margin-left: 5vw;"><span style=""><i class="material-icons" style=" color:  maroon
+          ;font-size:30px; animation: swing ease-in-out 0.6s 30000 ;">delete_outline</i></span>
+          <a class="social-link" href="https://twitter.com/twitter" target="_blank">
+            <i class="material-icons">backup</i></a>
+            <a class="social-link" href="https://codepen.io/joshuaward/" target="_blank"><i class="fab fa-codepen"></i></a> -->
+        <!-- <a class="social-link" href="https://www.instagram.com/joshuaward/" target="_blank"><i class="fab fa-instagram"></i></a> -->
+        <!-- <a class="social-link" href="https://github.com/joshuaward" target="_blank"><i class="fab fa-github"></i> </a> -->
+
+        <!-- </div>
+          <div class="hover iconfooter" style="
+           margin-left:1vw;"><span style=""><i class="material-icons" style=" color:  maroon
+            ;font-size:30px; animation: swing ease-in-out 0.6s 30000 ;">vertical_align_bottom</i></span>
+            <a class="social-link" href="https://twitter.com/twitter" target="_blank">
+              <i class="material-icons">backup</i></a>
+              <a class="social-link" href="https://codepen.io/joshuaward/" target="_blank"><i class="fab fa-codepen"></i></a> -->
+        <!-- <a class="social-link" href="https://www.instagram.com/joshuaward/" target="_blank"><i class="fab fa-instagram"></i></a> -->
+        <!-- <a class="social-link" href="https://github.com/joshuaward" target="_blank"><i class="fab fa-github"></i> </a> -->
+
+        <!-- </div> -->
+      </div>
+
+
+    </nav>
+    <!-- sidebar-wrapper  -->
+    <main class="page-content">
+
+
+    </main>
+    <!-- page-content" -->
+  </div>
